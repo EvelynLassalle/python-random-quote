@@ -3,14 +3,19 @@ import random
 def primary():
   #print("Keep it logically awesome.")
 
-  f = open("quotes.txt")
-  quotes = f.readlines()
-  f.close()
+  try:
+    with open("quotes.txt") as f:
+      quotes = f.readlines()
+      countNoQuotes = len(quotes)
 
-  last = 13
-  rnd = random.randint(0, last)
+      rnd = random.randint(0, countNoQuotes)
+      print(quotes[rnd], end='')
+  
+  except FileNotFoundError:
+    print("Unable to locate file <quotes.txt>")
 
-  print(quotes[rnd])
+  except Exception as e:
+    print(e)
 
 if __name__== "__main__":
 	primary()		#llamada de la funcion
